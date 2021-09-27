@@ -2,7 +2,7 @@ const router = require("express").Router();
 const activitiesRouter = require('./activities.routes')
 const eventsRouter = require('./events.routes')
 const shopItemsRouter = require('./shopItems.routes')
-const authRouter = require('../../../Project_3/server/routes/auth.routes')
+const authRouter = require('./auth.routes')
 
 
 router.use("/activities", activitiesRouter);

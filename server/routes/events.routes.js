@@ -1,5 +1,5 @@
 const express = require("express");
-const Event = require("../../../Project_3/server/models/Event.model");
+const Event = require("./../models/Event.model")
 const router = express.Router();
 
 router.get("/", (req, res) => {

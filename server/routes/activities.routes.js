@@ -1,5 +1,5 @@
 const express = require("express");
-const Activity = require("../../../Project_3/server/models/Activity.model");
+const Activity = require("./../models/Activity.model");
 const router = express.Router();
 
 router.get("/", (req, res) => {

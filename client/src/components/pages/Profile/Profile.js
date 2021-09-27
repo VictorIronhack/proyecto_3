@@ -4,7 +4,7 @@ const Profile = ({ loggedUser }) => {
 
   return (
     <Container>
-      <h1>¡Bienvenid@, {loggedUser.username}!</h1>
+      <h1>¡Bienvenid@,!</h1>
     </Container>
   )
 }
