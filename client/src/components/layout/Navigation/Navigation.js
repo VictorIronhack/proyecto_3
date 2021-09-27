@@ -26,17 +26,17 @@ export default function Navigation(props) {
 
             <Link className="nav-link" to="#">Events</Link>
 
-            <Link className="nav-link" to="/">MyProfile</Link>
+            <Link className="nav-link" to="/profile">MyProfile</Link>
 
             {props.loggedUser ?
               <>
-                <Link className="nav-link" to="/perfil">MyProfile</Link>
+                <Link className="nav-link" to="/profile">MyProfile</Link>
                 <span className="nav-link" onClick={logout}>Logout</span>
               </>
               :
               <>
-                <Link className="nav-link" to="/registro">Signup</Link>
-                <Link className="nav-link" to="/iniciar-sesion">Login</Link>
+                <Link className="nav-link" to="/signup">Sign Up</Link>
+                <Link className="nav-link" to="/login">Log In</Link>
               </>
               
             }

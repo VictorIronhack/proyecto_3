@@ -12,22 +12,22 @@ const eventSchema = new Schema (
     },
     date: {
       type: Date,
-      required: true,
-      //todo default
     },
+
     location: {
         type: {
           type: String,
       },
       coordinates: [Number],
     },
-    //todo agrupar direccion en un objeto
+    
     address: {
-      type: String
+      type: String,
+      city: {
+        type: String
+      },
     },
-    city: {
-      type: String
-    },
+    
     description: {
       type: String,
       minlength: 5,
@@ -39,7 +39,12 @@ const eventSchema = new Schema (
       required: true,
       default: 'https://images.unsplash.com/photo-1565992441121-4367c2967103?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=627&q=80'
     },
-    // participants
+    
+    participant: [{
+      type: Schema.Types.ObjectId,
+      ref: 'User'
+    }],
+    
     owner: {
       type: Schema.Types.ObjectId,
       ref: 'User'

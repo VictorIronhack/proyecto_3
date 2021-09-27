@@ -10,11 +10,6 @@ const shopItemSchema = new Schema ({
     trim: true,
   },
 
-  buyer: {
-    type: Schema.Types.ObjectId,
-    ref: 'User',
-  },
-
   image: {
     type: String,
     default: '',
