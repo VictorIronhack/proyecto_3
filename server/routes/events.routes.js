@@ -1,5 +1,5 @@
 const express = require("express");
-const Event = require("../../../Project_3/server/models/Event.model");
+const Event = require('./../models/Event.model');
 const router = express.Router();
 
 router.get("/", (req, res) => {
@@ -41,7 +41,5 @@ router.put("/:id", (req, res) => {
     .then(event => res.status(200).json({ event, message: "Event edited" }))
     .catch(err => res.status(500).json({ code: 500, message: "Error editing event", err }))
 })
-
-
 
 module.exports = router;

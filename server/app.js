@@ -14,8 +14,8 @@ require("./config/cors.config")(app);
 
 
 
-// const allRoutes = require("./routes");
-// app.use("/api", allRoutes);
+const allRoutes = require("./routes");
+app.use("/api", allRoutes);
 
 require("./error-handling")(app);
 
