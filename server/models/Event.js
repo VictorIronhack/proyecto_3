@@ -12,7 +12,8 @@ const eventSchema = new Schema (
     },
     date: {
       type: Date,
-      required: true
+      required: true,
+      //todo default
     },
     location: {
         type: {
@@ -20,7 +21,8 @@ const eventSchema = new Schema (
       },
       coordinates: [Number],
     },
-    addres: {
+    //todo agrupar direccion en un objeto
+    address: {
       type: String
     },
     city: {
@@ -49,6 +51,6 @@ const eventSchema = new Schema (
 
 )
 
-const Event = model('Event', eventSchema);
+const Event = model('Event', commentSchema);
 
 module.exports = Event;
