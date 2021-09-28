@@ -23,6 +23,7 @@ class Login extends Component {
 
     this.authService.login(username, pwd)
       .then(res => {
+        console.log(res)
         this.props.storeUser(res.data)
         this.props.history.push("/")
       })

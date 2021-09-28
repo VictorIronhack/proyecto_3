@@ -9,12 +9,14 @@ const activitySchema = new Schema ({
     maxlength: 100,
     trim: true,
   },
+
   desciption: {
     type: String,
     required: true,
     minlength: 1,
     maxlength: 100,
   },
+
   professor: {
     type: String,
     required: true
@@ -40,6 +42,6 @@ const activitySchema = new Schema ({
   }
 );
 
-const Activity = model('Activtu', activitySchema);
+const Activity = model('Activity', activitySchema);
 
 module.exports = Activity;

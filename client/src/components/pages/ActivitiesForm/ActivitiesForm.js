@@ -1,56 +1,18 @@
-import React, { Component, Button, Form} from 'react'
-import ActivityService from '../../../services/activity.service';
-// import ActivitiesForm from '../ActivitiesForm/ActivitiesForm';
+import React, { Component, Form, Button } from 'react'
 
 
-export default class ActivitiesList extends Component {
 
-    constructor(){
-      super();
-      this.state = {
-        show: false,
-        searchValue: ""
-      }
-      this.activityService = new ActivityService();
-    }
+export default class ActivitiesForm extends Component {
 
-    refreshActivity = () => {
-
-      this.activityService.getActivity()
-      .then(res => {
-        this.setState({
-          ...this.state,
-          coasters: res.data
-        })
-      })
-      .catch(err => console.error(err))
-    }
-
-    handleSubmit = (e) => {
-      e.preventDefault();
   
-      this.coasterService.createActivity(this.state)
-        .then(() => {
-          // this.props.closeModal();
-          this.props.refreshActivity();
-          this.setState({
-            title: "",
-            description: "",
-            image: "",
-            professor: '',
-            date: 0
-          })
-        })
-        .catch(err => console.error(err))
-    }
-  
+
 
   render() {
     return (
-
       <div>
+        
       <Form onSubmit={this.handleSubmit}>
-        <Form.Group className="mb-3" controlId="name">
+        <Form.Group className="mb-3" controlId="title">
           <Form.Label>Name: </Form.Label>
           <Form.Control onChange={(e) => this.handleChange(e)} name="name" value={this.state.name} type="text" placeholder="Name activity" />
         </Form.Group>
