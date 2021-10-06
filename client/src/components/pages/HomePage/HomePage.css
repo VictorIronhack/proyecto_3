@@ -1,0 +1,25 @@
+h1, p {
+  text-align: center;
+}
+.sec-1 {
+  padding: 50px 100px;
+  font-size: large;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+.sec-2 {
+  padding: 50px 50px;
+  font-size: large;
+}
+h1 {
+  font-size:5em;
+}
+.cardimg{
+  width: 100%;
+  transform: scale(.9);
+  transition: transform .5s;
+  height: 370px;
+  object-fit: cover;
+}
+.card{
+  background-color: rgba(255, 255, 255, 0.5);
+}

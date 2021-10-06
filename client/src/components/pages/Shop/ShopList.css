@@ -1,0 +1,19 @@
+.image {
+  max-width: 200px;
+  max-height: 300px;
+  image-resolution: 10%;
+  margin: auto;
+  margin-top: 20px
+}
+
+.search{
+  text-align: center;
+  margin-left: 400px;
+  
+}
+
+.search2{
+  margin-right: 400px;
+  color: white;
+  background-color: #2DC5FA;
+}
