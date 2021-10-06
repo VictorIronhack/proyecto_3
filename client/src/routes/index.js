@@ -12,17 +12,15 @@ import Cart from '../components/pages/Cart/Cart';
 
 const Routes = ({ storeUser, loggedUser }) => {
   return (
-
     <Switch>
-
       <Route exact path='/' render={() => <HomePage />} />
-      <Route exact path='/activities' render={() => <Activities />} /> 
+      <Route exact path='/activities' render={() => <Activities loggedUser={loggedUser} />} /> 
       <Route path="/activity-detail/:id" render={(props) => <ActivityDetail {...props} />} />
       <Route exact path='/events' render={(props) => <Events {...props} loggedUser={loggedUser}/>} /> 
       <Route exact path='/profile' render={() => loggedUser ? <Profile loggedUser={loggedUser} /> : <Redirect to="/login" />} />
       <Route exact path='/signup' render={(props) => <Signup {...props}/>} />
       <Route exact path='/login' render={(props) => <Login storeUser={storeUser} {...props}/>} />
-      <Route exact path='/shop' render={() => <ShopList />} />
+      <Route exact path='/shop'  render={(props) => <ShopList loggedUser={loggedUser} {...props} />} />
       <Route exact path='/cart' render={(props) => <Cart loggedUser={loggedUser} {...props}/>} /> 
     </Switch>
   )

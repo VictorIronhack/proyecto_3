@@ -73,7 +73,10 @@ export default class Events extends Component {
           {this.state.events.map(events => <EventItem key={events._id} loggedUser= {this.props.loggedUser} refreshEvent={this.refreshEvent} onEdit={this.onEdit}  {...events}/>)}   
           </div>
         </div>
-        <Button block className="mt-2" onClick={() => this.openModal()}>New Event</Button>
+
+        {this.props.loggedUser?.role === 'MAN' &&
+        <div>
+        <Button block className="mt-2 buttonEventNew" onClick={() => this.openModal()}>New Event</Button>
         <Modal show={this.state.show} onHide={() => this.closeModal()}>
           <Modal.Header closeButton>
             <Modal.Title className='centerB'>New Event</Modal.Title>
@@ -82,6 +85,7 @@ export default class Events extends Component {
             <EventForm data={this.state.data} closeModal={() => this.closeModal()}  refreshEvent={this.refreshEvent} />
           </Modal.Body>
         </Modal>
+        </div>}
       </section>
       <article>
         <Map location={this.props.location} markers={this.state.events} />

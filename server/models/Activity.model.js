@@ -24,6 +24,12 @@ const activitySchema = new Schema ({
     type: Schema.Types.ObjectId,
     ref: 'User'
   }],
+
+  maxParticipants:{
+    type: Number,
+    default: 25,
+    required: true 
+   }, 
   
   date: {
     type: Date,

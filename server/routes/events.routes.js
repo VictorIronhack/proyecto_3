@@ -2,6 +2,8 @@ const express = require("express");
 const Event = require('./../models/Event.model');
 const router = express.Router();
 
+
+
 router.get("/", (req, res) => {
   Event
     .find()
@@ -36,7 +38,6 @@ router.delete("/:id", (req, res) => {
 
 
 router.put("/push", (req, res) => {
-  
   Event
     .updateOne({_id: req.body.eventId},{$push: {participant: req.session.currentUser._id}})
     .then(users => res.status(200).json({ users, message: "User Join Event" }))

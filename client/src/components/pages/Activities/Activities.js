@@ -4,20 +4,23 @@ import ActivityService from '../../../services/activity.service'
 import ActivityForm from './ActivityForm/ActivityForm'
 import ActivityItem from './ActivityItem/ActivityItem'
 import Calendar from './../Calendar/Calendar'
-// import SliderActivities from './SliderActivities'
+import { Fade } from 'react-slideshow-image';
+import './Activities.css'
+
 
 
 export default class Activities extends Component {
   constructor(props) {
     super(props)
+
     this.state = {
       activities: null,
       show: false,
     }
-    
+
     this.activityService = new ActivityService()
   }
-  
+
   refreshActivity = () => {
     this.activityService.getActivities()
       .then(res => {
@@ -32,6 +35,7 @@ export default class Activities extends Component {
 
   componentDidMount() {
     this.refreshActivity();
+
   }
 
   openModal = () => {
@@ -48,6 +52,9 @@ export default class Activities extends Component {
     })
   }
 
+  deleteAct = () => {
+    this.activityService.deleteActivity(this.props._id)
+  }
 
   render() {
     return (
@@ -58,27 +65,36 @@ export default class Activities extends Component {
         <section>
           <div className='column centerOne'>
             <div className='row justify-content-md-center'>
-              {this.state.activities.map(activities => <ActivityItem onEdit={this.onEdit} key={activities._id} {...activities} />)}
+              {this.state.activities.map(activities => <ActivityItem key={activities._id} {...activities} refreshActivity={this.refreshActivity} loggedUser={this.props.loggedUser} />)}
+            </div>
+            <div className="slide-container">
+              <Fade>
+              {this.state.activities.map(activities =>
+                <div className="each-fade"><img src={activities.image} alt=''/>
+                  <p>{activities.name}-{activities.description}</p>
+                </div>
+              )}
+              </Fade>
             </div>
           </div>
-          <Button block className="mt-2" onClick={() => this.openModal()}>New Activity</Button>
-          <Modal show={this.state.show} onHide={() => this.closeModal()}>
-            <Modal.Header closeButton>
-              <Modal.Title>New Activity</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <ActivityForm data={this.state} closeModal={() => this.closeModal()} refreshActivity={this.refreshActivity}/>
-            </Modal.Body>
-          </Modal>
-
+          {this.props.loggedUser?.role === 'MAN' &&
+            <div>
+              <Button block className="mt-2" onClick={() => this.openModal()}>New Activity</Button>
+              <Modal show={this.state.show} onHide={() => this.closeModal()}>
+                <Modal.Header closeButton>
+                  <Modal.Title>New Activity</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  <ActivityForm closeModal={() => this.closeModal()} refreshActivity={this.refreshActivity} />
+                </Modal.Body>
+              </Modal>
+            </div>}
+          <br />
+          <br />
+          <br />
           <section>
-            {/* <SliderActivities /> */}
+            <Calendar />
           </section>
-          <br/>
-          <br/>
-          <br/>
-          <br/>
-          <Calendar />
         </section>
     )
   }

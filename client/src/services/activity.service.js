@@ -13,7 +13,6 @@ class ActivityService {
   getOneActivity = (id) => this.instance.get(`/${id}`);
   createActivity = (activity) => this.instance.post("/", activity);
   updateOneActivity = (id, activity) => {
-    console.log(activity)
   return this.instance.put(`/${id}`, activity)
   }
 }

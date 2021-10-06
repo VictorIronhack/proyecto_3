@@ -1,14 +1,17 @@
-import { Container } from "react-bootstrap"
+import { Col, Container, Image} from "react-bootstrap"
 
 const Profile = ({ loggedUser }) => {
 
   return (
     <Container>
+      <Col xs={6} md={6}>
+      <Image src={loggedUser.image} width='300x350' height='300x350' roundedCircle />
+      </Col>
+     
       <div className='column'>
         <div className='row'>
           <div className='col-6'>
             <h1>¡Bienvenid@ a IronGym,!   -   {loggedUser.username}</h1>
-            <img src={loggedUser.image} alt={loggedUser.username} width='200px' />
             <p>{loggedUser.email}</p>
 
             <h3>Purchase history:</h3>
@@ -17,6 +20,7 @@ const Profile = ({ loggedUser }) => {
         </div>
 
       </div>
+      
     </Container>
   )
 }

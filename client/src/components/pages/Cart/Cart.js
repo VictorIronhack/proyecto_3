@@ -3,9 +3,6 @@ import { Button, Spinner } from 'react-bootstrap'
 import CartService from '../../../services/cart.service'
 import CartItem from './CartItem'
 
-
-
-
 export default class CartList extends Component {
   constructor(props) {
     super(props)
@@ -15,7 +12,6 @@ export default class CartList extends Component {
     }
     this.cartService = new CartService()
   }
-
 
   refreshCartItems = () => {
     this.cartService.getCarts()
@@ -52,18 +48,16 @@ export default class CartList extends Component {
     return (
 
       <section>
-
-        <h1>Your Shopping List</h1>
         {!this.state.products
       ?
       <Spinner animation="border" variant="primary" />
       :
-        <div className='column centerOne'>
+        <div className='column'>
           <div className='row justify-content-md-center'>
           {this.state.products.map(products => <CartItem key={products._id} {...products} refreshCartItems={() => this.refreshCartItems()}/>)} 
           </div>
         </div>}
-        <Button onClick={()=> {this.handleBuy()}}  block className="mt-2">Buy Now!!</Button>
+        <Button onClick={()=> {this.handleBuy()}}  block className="mt-2 buttonNow">Buy Now</Button>
       </section>
     )
   }

@@ -11,7 +11,7 @@ class EventService {
   getEvents = () => this.instance.get("/");
   getOneEvent = (id) => this.instance.get(`/${id}`);
   createEvent = (event) => this.instance.post("/", event);
-  pushUser = (eventId) => this.instance.put("/push", {eventId}) //req.body
+  pushUser = (eventId) => this.instance.put("/push", {eventId}) 
   pullUser = (eventId) => this.instance.put("/pull", {eventId})
   updateOneEvent = (id, event) =>  this.instance.put(`/${id}`, event)
   

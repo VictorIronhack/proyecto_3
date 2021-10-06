@@ -61,8 +61,11 @@ class EventsCalendar extends Component {
   render() {
     return (
       <>
+      <div className='calendar'>
+
       {this.state.activities ?
-      <div style={{ height: `${400}px` }} className="bigCalendar-container">
+      <div style={{ height: `${600}px` }} className="bigCalendar-container">
+      
         <Calendar
           localizer={localizer}
           eventPropGetter={this.eventStyleGetter}
@@ -70,8 +73,8 @@ class EventsCalendar extends Component {
           step={60}
           view='week'
           views={['week']}
-          min={new Date(2021, 9, 1, 8, 0)}
-          max={new Date(2021, 9, 1, 22, 0)}
+          min={new Date(2021, 9, 1, 6, 0)}
+          max={new Date(2021, 9, 1, 23, 0)}
           date={new Date(2021, 9, 4)}
           startAccessor="start"
           endAccessor="end"
@@ -80,6 +83,7 @@ class EventsCalendar extends Component {
       :
       <p>...loading</p>
 }
+      </div>
       </>
     )
   }

@@ -37,11 +37,11 @@ counterRest = () => {
                         </div>
                         <div className="control">
                         
-                            <button onClick={()=>this.counterSum()} className="button is-info">
+                            <button onClick={()=>this.counterSum()} className="">
                                 +
                                 
                             </button>
-                            <button onClick={()=>this.counterRest()} className="button is-info">
+                            <button onClick={()=>this.counterRest()} className="">
                                 -
                             </button>
                         </div>

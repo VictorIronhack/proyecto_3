@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {Button, Form,} from 'react-bootstrap'
 import EventService from './../../../services/event.service'
 import Geocode from "react-geocode";
+import './Event.css'
 
 Geocode.setApiKey(process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
 Geocode.setLanguage("en");

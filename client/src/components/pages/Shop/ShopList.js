@@ -6,6 +6,8 @@ import ShopForm from './ShopForm'
 import './ShopList.css'
 
 
+
+
 export default class ShopList extends Component {
   constructor(props) {
     super(props)
@@ -46,6 +48,7 @@ export default class ShopList extends Component {
 
   componentDidMount() {
     this.refreshShopItems();
+    console.log(this.props)
   }
 
   handleChange = (e) => {
@@ -75,7 +78,7 @@ export default class ShopList extends Component {
     return (
     
       <section>
-        <Form className="d-flex">
+        <Form className="d-flex search3">
         <FormControl
         
           onChange={this.handleChange}
@@ -98,16 +101,23 @@ export default class ShopList extends Component {
           <div className='row justify-content-md-center'>
           {this.displayShopItems()}
           </div>
-        </div>}
-        <Button block className="mt-2" onClick={() => this.openModal()}>New Product</Button>
+        {this.props.loggedUser?.role === 'MAN' && 
+        <div>
+        <Button  block className="mt-2 buttonBackground2" onClick={() => this.openModal()}>New Product</Button>
         <Modal show={this.state.show} onHide={() => this.closeModal()}>
+              
               <Modal.Header closeButton>
                 <Modal.Title>New Product</Modal.Title>
               </Modal.Header>
               <Modal.Body>
                 <ShopForm closeModal={() => this.closeModal()} refreshShopItems={this.refreshShopItems} />
               </Modal.Body>
-            </Modal>
+        </Modal>
+        </div>
+        }
+        </div>}
+        <section>
+        </section>
       </section>
     )
   }

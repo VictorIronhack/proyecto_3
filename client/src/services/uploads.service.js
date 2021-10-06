@@ -9,6 +9,7 @@ class UploadsService {
   }
 
   uploadImg = (imageForm) => this.instance.post("/image", imageForm)
+  // uploadVid = (videoForm) => this.instance.post("/video", videoForm)
 }
 
 export default UploadsService;
