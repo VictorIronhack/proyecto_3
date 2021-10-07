@@ -13,7 +13,7 @@ require("./config")(app);
 require("./config/session.config")(app)
 require("./config/cors.config")(app);
 
-app.use(express.static(path.join(__dirname, '..', "public")))
+app.use(express.static(path.join(__dirname, "public")))
 
 const allRoutes = require("./routes");
 app.use("/api", allRoutes);
