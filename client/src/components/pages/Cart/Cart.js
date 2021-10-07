@@ -57,7 +57,9 @@ export default class CartList extends Component {
           {this.state.products.map(products => <CartItem key={products._id} {...products} refreshCartItems={() => this.refreshCartItems()}/>)} 
           </div>
         </div>}
+        {this.props.loggedUser?.role === 'USER' &&
         <Button onClick={()=> {this.handleBuy()}}  block className="mt-2 buttonNow">Buy Now</Button>
+        }
       </section>
     )
   }

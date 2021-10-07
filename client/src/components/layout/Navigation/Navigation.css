@@ -2,3 +2,7 @@
   color: white;
   background-color: #2DC5FA;
 }
+
+.fixedNavigation {
+  /* position:fixed; */
+}

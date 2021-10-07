@@ -4,7 +4,6 @@ import { Button } from 'react-bootstrap'
 import ActivityService from '../../../../services/activity.service'
 import './ActivityItem.css'
 import 'react-slideshow-image/dist/styles.css'
-import { Slide } from 'react-slideshow-image';
 
 
 

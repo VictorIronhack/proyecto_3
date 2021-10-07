@@ -9,6 +9,7 @@ class Signup extends Component {
     this.state = {
       username: "",
       pwd: ""
+      
     }
     this.authService = new AuthService()
   }

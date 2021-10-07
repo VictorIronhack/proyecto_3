@@ -94,7 +94,6 @@ class CartItem extends Component {
 
 export default CartItem;
 
-{/* <input className="input" onClick={() => this.counter()} type="number" value={this.state.quantity} /> */}
 
 
 

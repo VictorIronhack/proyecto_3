@@ -6,8 +6,6 @@ const Cart = require("../models/Cart.model");
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10
 
-
-// Signup (post)
 router.post('/signup', (req, res) => {
 
   const { username, pwd, email } = req.body
@@ -20,10 +18,8 @@ router.post('/signup', (req, res) => {
         res.status(400).json({ code: 400, message: 'Username already exixts' })
         return
       }
-
       const salt = bcrypt.genSaltSync(bcryptSalt)
       const hashPass = bcrypt.hashSync(pwd, salt)
-
       
       User
         .create({ username, password: hashPass, email })
