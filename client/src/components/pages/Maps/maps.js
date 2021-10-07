@@ -30,10 +30,10 @@ class Map extends Component {
         //     styles: mapStyles.celeste
         // }}  
         >
-        { this.props.location?.pathname.includes("event")
+        {/* { this.props.location.pathname.includes("event")
             ? <Markers markers={this.props.markers} />
             : <IronhackMarkers />
-        }
+        } */}
         </GoogleMap>
         <Markers />
       </LoadScript>
