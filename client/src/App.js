@@ -4,6 +4,7 @@ import Navigation from './components/layout/Navigation/Navigation';
 import { Component } from 'react';
 import AuthService from './services/auth.service';
 import Routes from './../src/routes/index'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 class App extends Component {
   constructor() {

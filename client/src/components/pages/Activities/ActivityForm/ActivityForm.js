@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import {Button, Form,} from 'react-bootstrap'
 import ActivityService from '../../../../services/activity.service'
+import UploadsService from '../../../../services/uploads.service'
+
 
 
 export default class ActivityForm extends Component {
@@ -18,6 +20,18 @@ export default class ActivityForm extends Component {
         }
         this.activityService = new ActivityService()
     }
+    uploadService = new UploadsService()
+    // state={
+    //     name:'',
+    //     description:'',
+    //     instructor:'',
+    //     date:'',
+    //     hourStart:'',
+    //     hourEnd:'',
+    //     image:'',
+    //     video: ''
+    // }
+    // activityService = new ActivityService()
 
     handleChange = (e) => {
         const {value, name} = e.target
@@ -45,12 +59,32 @@ export default class ActivityForm extends Component {
                 date:'',
                 hourStart:'',
                 hourEnd:'',
-                image:''
+                image:'',
+                video: ''
             })
         })
         .catch(err => console.error(err))
     } 
 
+    handleFile = (e) => {
+        this.setState({
+          ...this.state,
+          isLoading: true
+        })
+    
+        const uploadData = new FormData()
+        uploadData.append('imageData', e.target.files[0])
+    
+        this.uploadService.uploadImg(uploadData)
+          .then(res => {
+            this.setState({
+              ...this.state,
+              isLoading: false,
+              image: res.data.cloudinary_url,
+            })
+          })
+          .catch(err => alert("Error"))
+      }
 
     render() {
         return (
@@ -83,7 +117,12 @@ export default class ActivityForm extends Component {
 
             <Form.Group className="mb-3" controlId="image">
                 <Form.Label>Imagen: </Form.Label>
-                <Form.Control onChange={(e) => this.handleChange(e)} name="image" value={this.state.image} type="text" placeholder="Introduce imagen" />
+                <Form.Control onChange={(e) => this.handleFile(e)} name="image" type="file" />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="video">
+                <Form.Label>Video: </Form.Label>
+                <Form.Control onChange={(e) => this.handleFile(e)} name="video" value={this.state.video} type="text" placeholder="Introduce video" />
             </Form.Group>
             <Button variant="primary" type="submit">
             Submit

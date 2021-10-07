@@ -9,3 +9,7 @@
   z-index: -1000;
   position: fixed!important;
 }
+
+#body {
+  font-family: 'Montserrat', sans-serif;
+}

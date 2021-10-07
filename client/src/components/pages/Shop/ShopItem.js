@@ -1,20 +1,20 @@
 import React, { Component } from 'react'
-import { Button, Col, Card, ListGroup, ListGroupItem } from 'react-bootstrap'
+import { Button, Col, Card} from 'react-bootstrap'
 import CartService from '../../../services/cart.service'
 import './ShopList.css'
 
 export default class ShopItem extends Component {
-constructor(props) {
-  super(props)
+  constructor(props) {
+    super(props)
 
-  this.state = {
-    name:'',
-    image:'',
-    price: 0,
-    description:''
+    this.state = {
+      name: '',
+      image: '',
+      price: 0,
+      description: ''
+    }
+    this.cartService = new CartService()
   }
-  this.cartService = new CartService()
-}
 
 componentDidMount() {
   this.getCart()
@@ -53,31 +53,31 @@ sendToCart = () => {
 }
 
 
-  
-render () {
-  return (
-      
-      <Col md={3} className="mb-3 d-flex align-items-stretch">
-        <Card style={{ width: '18rem' }}>
-          <Card.Img className='image' variant="top" src={this.props.image} alt={this.props.name} />
-          <Card.Body className='image'>
-            <Card.Title>{this.props.name}</Card.Title>
-            <Card.Text>
-            </Card.Text>
-          </Card.Body>
-          <p className='image'>
 
-          {this.props.description}
-          </p>
-          <br/>
-            <ListGroup className="list-group-flush">
-              <ListGroupItem><strong>Price: {this.props.price} €</strong></ListGroupItem>
-            </ListGroup> 
+  render() {
+    return (
+      <Col md={4} className="mb-3 d-flex align-items-stretch search3">
+        <div>
+          <figure className="snip1278">
+            <div className="image">
+              <img src={this.props.image} alt="sq-sample6" />
+            </div>
+            {this.props.name}
+            <figcaption>
+              <p>
+                {this.props.description}
+              </p>
+              <hr/>
+              <div className="price">
+                {this.props.price}€
+              </div>
+            </figcaption>
             <Card.Body>
-              <Button onClick={()=>this.sendToCart()}variant="primary">Add to Cart</Button>
+              <Button className='buttonBackground' onClick={() => this.sendToCart()}>Add to Cart</Button>
             </Card.Body>
-        </Card>
+          </figure>
+        </div>
       </Col>
-  )
-}
+    )
+  }
 }

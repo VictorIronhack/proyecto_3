@@ -47,6 +47,28 @@ openModal = () => {
   }
 
    
+    // const{id} = this.props.match.params
+    // this.activitiesService.getOneActivity(id)
+    //     .then( res => {
+    //         this.setState({
+    //             ...this.state,
+    //             activities: res.data
+    //     })
+    // })
+// .catch(err => console.error(err))
+// }
+
+deleteAct = () => {
+    this.activitiesService.deleteActivity(this.state.activities.activity._id)
+    .then(res => {
+        this.props.history.push('/activities')
+
+    })
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault()
+    } 
 
     render() {
         return (
@@ -62,6 +84,8 @@ openModal = () => {
                 <Col md={4}>
               <img src={this.state.activities.activity.image} alt={this.state.activities.activity.name} />
             </Col>
+            <Button type='submit' onSubmit = {this.handleSubmit} block className="mt-2" onClick={() => this.deleteAct()}>Delet Activity</Button>
+
           </Row>
           :
           <Spinner />

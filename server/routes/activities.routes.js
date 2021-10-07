@@ -13,7 +13,6 @@ router.get("/", (req, res) => {
         copy.bgColor = elm.bgColor
         return copy
       })
-     
       res.status(200).json(mappedActivitites)
     })
     .catch(err => res.status(500).json({ code: 500, message: "Error retrieving activities", err }))
@@ -70,7 +69,41 @@ router.put("/:id", (req, res) => {
 })
 
 
+router.put("/push", (req, res) => {
+  console.log({participant: req.session.currentUser._id})
+  Activity
+  .updateOne({_id: req.body.activityId}, {$push: {participant: req.session.currentUser._id}})
+  .then(users => {
+    console.log({participant: req.session.currentUser._id})
+    res.status(200).json({ users, message: "User Join Activity" })})
+    .catch(err => res.status(500).json({ code: 500, message: "Error Joining Activity", err: err.message }))
+  })
+  
+  
+  router.put("/pull", (req, res) => {
+    Activity
+    .updateOne( 
+      {_id: req.body.activityId},
+      {$pull: {participant: req.session.currentUser._id}}
+      )
+      .then(users => res.status(200).json({ users, message: "User Off Activity" }))
+      .catch(err => res.status(500).json({ code: 500, message: "Error Off Activity", err }))
+    })
+    
+    router.delete("/:id", (req, res) => {
+      const { id } = req.params;
+      Activity
+      .findByIdAndRemove(id)
+      .then(() => res.status(200).json({ message: `Activity ${id} deleted` }))
+      .catch(err => res.status(500).json({ code: 500, message: "Error deleting activity", err }))
+    })
 
-
-
+    router.put("/:id", (req, res) => {
+      const { id } = req.params;
+      Activity
+      .findByIdAndUpdate(id, req.body, { new: true })
+      .then(activity => res.status(200).json({ activity, message: "Activity edited" }))
+      .catch(err => res.status(500).json({ code: 500, message: "Error editing activity", err }))
+    })
+    
 module.exports = router;

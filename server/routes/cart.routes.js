@@ -1,9 +1,10 @@
 const express = require("express");
 const Cart = require("../models/Cart.model");
 const router = express.Router();
+const { isLoggedIn } = require("../middleware")
 
 
-router.get("/", (req, res) => {
+router.get("/",isLoggedIn, (req, res) => {
   Cart
     .find({owner: req.session.currentUser._id})
     .populate("products")
@@ -11,7 +12,7 @@ router.get("/", (req, res) => {
     .then(carts => res.status(200).json(carts))
     .catch(err => res.status(500).json({ code: 500, message: "Error retrieving carts", err }))
 })
-router.put("/push", (req, res) => {
+router.put("/push", isLoggedIn, (req, res) => {
   const { productId } = req.body
   Cart
     .updateOne(
@@ -21,7 +22,7 @@ router.put("/push", (req, res) => {
     .catch(err => res.status(500).json({ code: 500, message: "Error Adding Product", err: err.message }))
 })
 
-router.put("/pull", (req, res) => {
+router.put("/pull",isLoggedIn, (req, res) => {
     const { productId } = req.body
   Cart
     .updateOne( 
@@ -32,7 +33,7 @@ router.put("/pull", (req, res) => {
 })
 
 
-router.put("/pullAll", (req, res) => {
+router.put("/pullAll",isLoggedIn, (req, res) => {
  
 Cart
   .updateMany( 
