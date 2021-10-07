@@ -68,7 +68,7 @@ export default class Events extends Component {
       <>
       <section>
       
-        <div className='column centerOne'>
+        <div className='column centerOne text'>
           <div className='row justify-content-md-center'>
           {this.state.events.map(events => <EventItem openModal={this.openModal} key={events._id} loggedUser= {this.props.loggedUser} refreshEvent={this.refreshEvent} onEdit={this.onEdit} event={events} {...events}/>)}   
           </div>
