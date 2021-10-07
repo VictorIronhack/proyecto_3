@@ -21,17 +21,17 @@ export default class ActivityForm extends Component {
         this.activityService = new ActivityService()
     }
     uploadService = new UploadsService()
-    // state={
-    //     name:'',
-    //     description:'',
-    //     instructor:'',
-    //     date:'',
-    //     hourStart:'',
-    //     hourEnd:'',
-    //     image:'',
-    //     video: ''
-    // }
-    // activityService = new ActivityService()
+    state={
+        name:'',
+        description:'',
+        instructor:'',
+        date:'',
+        hourStart:'',
+        hourEnd:'',
+        image:'',
+        video: ''
+    }
+    activityService = new ActivityService()
 
     handleChange = (e) => {
         const {value, name} = e.target

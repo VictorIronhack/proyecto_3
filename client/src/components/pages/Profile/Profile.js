@@ -1,8 +1,10 @@
 import { Col, Container, Image} from "react-bootstrap"
+import './Profile.css'
 
 const Profile = ({ loggedUser }) => {
 
   return (
+
     <Container>
       <Col xs={6} md={6}>
       <Image src={loggedUser.image} width='300x350' height='300x350' roundedCircle />
