@@ -10,13 +10,13 @@ export default class ActivityForm extends Component {
         super(props)
 
         this.state={
-            name:this.props.data.activity?.name || '',
-            description:this.props.data.activity?.description ||'',
-            instructor:this.props.data.activity?.instructor ||'',
-            date:this.props.data.activity?.date ||Date,
-            hourStart:this.props.data.activity?.hourStart ||'',
-            hourEnd:this.props.data.activity?.hourEnd ||'',
-            image:this.props.data.activity?.image ||''
+            name:this.props.data?.activity.name || '',
+            description:this.props.data?.activity.description ||'',
+            instructor:this.props.data?.activity.instructor ||'',
+            date:this.props.data?.activity.date ||Date,
+            hourStart:this.props.data?.activity.hourStart ||'',
+            hourEnd:this.props.data?.activity.hourEnd ||'',
+            image:this.props.data?.activity.image ||''
         }
         this.activityService = new ActivityService()
     }
@@ -44,9 +44,9 @@ export default class ActivityForm extends Component {
     handleSubmit = (e) => {
         e.preventDefault()
 
-        const id = this.props.data.activity._id
+        const id = this.props.data?.activity._id
 
-        const Submit = this.props.data.activity ? this.activityService.updateOneActivity(id, this.state) : this.activityService.createActivity(this.state)  
+        const Submit = this.props.data ? this.activityService.updateOneActivity(id, this.state) : this.activityService.createActivity(this.state)  
 
         Submit
         .then(()=> {
@@ -95,7 +95,7 @@ export default class ActivityForm extends Component {
             </Form.Group>
              <Form.Group className="mb-3" controlId="description">
                 <Form.Label>Descripction: </Form.Label>
-                 <Form.Control onChange={(e) => this.handleChange(e)} name="description" value={this.state.description} type="text" placeholder="Description" />
+                 <Form.Control onChange={(e) => this.handleChange(e)} name="description" maxLength={400} value={this.state.description} type="text" placeholder="Description" />
             </Form.Group>
             <Form.Group className="mb-3" controlId="instructor">
                 <Form.Label>Instructor: </Form.Label>
@@ -114,16 +114,16 @@ export default class ActivityForm extends Component {
                 <Form.Label>Hour End: </Form.Label>
                 <Form.Control onChange={(e) => this.handleChange(e)} type="time" name='hourEnd' min='08:00' value={this.state.hourEnd} max='22:00' placeholder="Introduce hour" />
             </Form.Group>
+            <Form.Group className="mb-3" controlId="video">
+                <Form.Label>Video: </Form.Label>
+                <Form.Control onChange={(e) => this.handleChange(e)} name="video" value={this.state.video} type="text" placeholder="Introduce url video" />
+            </Form.Group>
 
             <Form.Group className="mb-3" controlId="image">
                 <Form.Label>Imagen: </Form.Label>
                 <Form.Control onChange={(e) => this.handleFile(e)} name="image" type="file" />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="video">
-                <Form.Label>Video: </Form.Label>
-                <Form.Control onChange={(e) => this.handleFile(e)} name="video" value={this.state.video} type="text" placeholder="Introduce video" />
-            </Form.Group>
             <Button variant="primary" type="submit">
             Submit
             </Button>

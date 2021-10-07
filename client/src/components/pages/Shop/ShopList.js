@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Button, Modal, FormControl, Spinner, Form } from 'react-bootstrap'
 import ShopService from '../../../services/shop.service'
 import ShopItem from './ShopItem'
+import CartService from '../../../services/cart.service'
 import ShopForm from './ShopForm'
 import './ShopList.css'
 
@@ -13,13 +14,25 @@ export default class ShopList extends Component {
     super(props)
 
     this.state = {
+      cart: undefined,
       shopItems: null,
       show: false,
       searchValue:''
     }
+    this.cartService = new CartService()
     this.shopService = new ShopService()
   }
 
+  componentDidMount() {
+    this.refreshShopItems();
+    this.getCart()
+  }
+
+  getCart = () => {
+    return this.cartService.getCarts()
+    .then(res => this.setState({cart: res.data[0]}))
+    .catch(err => console.log(err))    
+  }
 
   refreshShopItems = () => {
     this.shopService.getShopItems()
@@ -46,10 +59,6 @@ export default class ShopList extends Component {
     })
   }
 
-  componentDidMount() {
-    this.refreshShopItems();
-    console.log(this.props)
-  }
 
   handleChange = (e) => {
     const {name, value} = e.target
@@ -65,7 +74,7 @@ export default class ShopList extends Component {
       filteredItems.length > 0 ?
       filteredItems.map(item => {
         return(
-          <ShopItem key={item._id} {...item}/>
+          <ShopItem refreshCart={this.getCart} cart={this.state.cart} key={item._id} {...item}/>
         )
       }) :
       <p>Not Found</p>

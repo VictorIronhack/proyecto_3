@@ -47,12 +47,12 @@ export default class EventForm extends Component {
     }
 
 
-
+ 
     handleSubmit = async (e) => {
         e.preventDefault()
         await this.localizeEvent()
         
-        const id = this.props.data._id
+        const id = this.props.data?._id
         
         const Submit = this.props.data ? this.eventService.updateOneEvent(id, this.state) : this.eventService.createEvent(this.state)  
         

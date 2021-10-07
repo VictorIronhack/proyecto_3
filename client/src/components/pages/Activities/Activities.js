@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {Link} from 'react-router-dom'
 import { Button, Modal, Spinner } from 'react-bootstrap'
 import ActivityService from '../../../services/activity.service'
 import ActivityForm from './ActivityForm/ActivityForm'
@@ -68,10 +69,10 @@ export default class Activities extends Component {
               {this.state.activities.map(activities => <ActivityItem key={activities._id} {...activities} refreshActivity={this.refreshActivity} loggedUser={this.props.loggedUser} />)}
             </div>
             <div className="slide-container">
-              <Fade>
+              <Fade duration={1000} transitionDuration={800} infinite={true} arrows={false} autoplay={true} pauseOnHover={true}>
               {this.state.activities.map(activities =>
                 <div className="each-fade"><img src={activities.image} alt=''/>
-                  <p>{activities.name}-{activities.description}</p>
+                  <Link id='nameact' to={`/activity-detail/${activities._id}`}><p>{activities.name}</p></Link>
                 </div>
               )}
               </Fade>

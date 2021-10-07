@@ -1,0 +1,16 @@
+.transparentwhite{
+    background-color: #2DC5FA80;
+    margin-top: 180px;
+    border-radius: 50px;
+}
+
+.btns{
+    display: flex;
+    justify-content: space-around;
+}
+
+.editbt, .deletebt{
+    background-color: #2DC5FA;
+    color: red;
+  
+}

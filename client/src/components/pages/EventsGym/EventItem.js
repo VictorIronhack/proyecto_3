@@ -28,8 +28,16 @@ export default class EventItem extends Component {
   isFulled = () => {
     return this.props.participant.length === this.props.maxParticipants
   }
+
   beatifullDay = () => {
     return new Date(this.props.date).toLocaleDateString();
+  }
+  
+  openModal = () => {
+    this.setState({
+      ...this.state,
+      show:true
+    })
   }
 
  
@@ -69,6 +77,7 @@ export default class EventItem extends Component {
             {this.props.loggedUser?.role === 'MAN' &&
             <div>
             <Button type='submit' onSubmit = {this.handleSubmit} block className="mt-2 buttonEvent" onClick={() => this.deleteEvent()}>Delete Event</Button>
+            <Button block className="mt-2 buttonEvent" onClick={() => this.props.onEdit(this.props.event)}>Edit Event</Button>
             </div>}
             
         </Card>

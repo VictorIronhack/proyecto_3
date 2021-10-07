@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Button, Col, Card} from 'react-bootstrap'
 import CartService from '../../../services/cart.service'
+
 import './ShopList.css'
 
 export default class ShopItem extends Component {
@@ -11,44 +12,47 @@ export default class ShopItem extends Component {
       name: '',
       image: '',
       price: 0,
-      description: ''
+      description: '',
+      isBuying: false
     }
     this.cartService = new CartService()
+
   }
 
-componentDidMount() {
-  this.getCart()
-    .then(cart => this.setState({cart}))
-}
 
-getCart = () => {
-  return this.cartService.getCarts()
-  .then(res => res.data[0])
-  .catch(err => console.log(err))    
-}
 
-isInCart = (cart, productId) => {
-  console.log(cart, productId)
-  if (cart.find((elm) => elm._id === productId)) {
-  return true
+isInCart = (productId) => {
+  if (this.props.cart.products.find((elm) => {
+    
+    console.log(elm._id, productId)
+
+    return elm._id === productId})) {
+    return true
   }//true o false si el id está ya en el carro
 }
 
 sendToCart = () => {
-  
-    if(this.isInCart(this.state.cart.products, this.props._id)) {
-      console.log("producto ya en el carro")
-      return 
-    }
-    
-    this.cartService.pushProduct(this.props._id)
-      .then(res => {
-        this.setState({
-          ...this.state,
-          products: res.data
+    if(this.state.isBuying) return
+
+    this.setState({isBuying: true}, ()=> {
+
+      if(this.isInCart(this.props._id)) {
+        console.log("producto ya en el carro")
+        return 
+      }
+      
+      this.cartService.pushProduct(this.props._id)
+        .then(res => {
+          this.props.refreshCart()
+          this.setState({
+            ...this.state,
+            products: res.data,
+            isBuying: false
+          })
         })
+        .catch(err => console.error(err))
+    
       })
-      .catch(err => console.error(err))
   
 }
 

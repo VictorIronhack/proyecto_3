@@ -54,7 +54,7 @@ const activitySchema = new Schema ({
     default: false
   },
 
-  bg_video: {
+  video: {
     type: String,
   },
 
