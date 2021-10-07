@@ -28,6 +28,7 @@
     "react-slideshow-image": "^3.5.1",
     "web-vitals": "^1.0.1"
   },
+  "homepage": "https://irongymsport.herokuapp.com/",
   "scripts": {
     "start": "REACT_APP_GOOGLE_MAPS_API_KEY=AIzaSyCpBESyP7p0HqYRBxzoqxbOxuPmskQ0IB8 REACT_APP_API_URL=http://localhost:5000/api react-scripts start",
     "build": "REACT_APP_GOOGLE_MAPS_API_KEY=AIzaSyCpBESyP7p0HqYRBxzoqxbOxuPmskQ0IB8 REACT_APP_API_URL=https://irongymsport/api react-scripts build",
