@@ -7,10 +7,8 @@ const Profile = ({ loggedUser }) => {
 		<div class="header-container1">
 			<img src="https://s17.postimg.cc/ypm5ye95r/image.jpg" alt="" class="header-image" />
 			<div class="header">
-				<svg fill="#ffffff" height="18" viewBox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg" class="header-icon">
 					<path d="M0 0h24v24H0z" fill="none"/>
 					<path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
-				</svg>
 	
 				<svg fill="#ffffff" height="18" viewBox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg" class="u-float-right header-icon">
 					<path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
@@ -34,22 +32,11 @@ const Profile = ({ loggedUser }) => {
 		
 		<div class="body">
 			<img src={loggedUser.image} width='80px' alt="logguedUser" class="body-image" />
-			<div class="body-action-button u-flex-center">
-				<svg fill="#ffffff" height="28" viewBox="0 0 24 24" width="28" xmlns="http://www.w3.org/2000/svg">
-					<path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
-					<path d="M0 0h24v24H0z" fill="none"/>
-				</svg>
-			</div>
+			
 			<span class="body-stats"><span></span></span>
 			<span class="body-stats"><span></span></span>
 			<div class="u-clearfix"></div>
 			<div class="body-info">
-			
-			</div>
-			<div class="body-more">
-				<span></span>
-				<span></span>
-				<span></span>
 			</div>
 		</div>
 	</div>

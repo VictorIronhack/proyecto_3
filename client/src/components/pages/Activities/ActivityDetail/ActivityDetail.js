@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ActivitiesService from './../../../../services/activity.service'
-import {Button, Col, Container, Modal, Row, Spinner} from 'react-bootstrap'
+import { Button, Col, Container, Modal, Row, Spinner } from 'react-bootstrap'
 import ActivityForm from '../ActivityForm/ActivityForm'
 import BackgroundVideos from '../../BackgroundVideo/BackgroundVideo'
 import './ActivityDetail.css'
@@ -9,21 +9,21 @@ import ActivityItem from '../ActivityItem/ActivityItem'
 
 export default class ActivityDetail extends Component {
 
-constructor(props){
+  constructor(props) {
     super(props)
 
-    this.state={
-        activities:null,
-        show: false,
+    this.state = {
+      activities: null,
+      show: false,
     }
     this.activitiesService = new ActivitiesService()
-}
+  }
 
-componentDidMount() {
+  componentDidMount() {
 
-   this.refreshActivity()
-   console.log(this.state)
-}
+    this.refreshActivity()
+    console.log(this.state)
+  }
 
 refreshActivity() {
   const{id} = this.props.match.params
@@ -35,11 +35,10 @@ refreshActivity() {
               ...this.state,
               activities: res.data
       })
+      .catch(err => console.error(err))
   })
-.catch(err => console.error(err))
 }
-
-openModal = () => {
+  openModal = () => {
     this.setState({
       ...this.state,
       show: true
@@ -55,15 +54,15 @@ openModal = () => {
 
 deleteAct = () => {
     this.activitiesService.deleteActivity(this.state.activities.activity._id)
-    .then(res => {
+      .then(res => {
         this.props.history.push('/activities')
 
-    })
+      })
   }
 
   handleSubmit = (e) => {
     e.preventDefault()
-    } 
+  }
 
     render() {
         return (
