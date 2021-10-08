@@ -25,8 +25,9 @@ export default class ActivityItem extends Component {
   }
 
   offActivity = () => {
-    this.activityService.pullUserActiviy(this.props._id)
+    this.activityService.pullUserActivity(this.props._id)
       .then(res => {
+        console.log("llamando a refresh")
         this.props.refreshActivity()
       })
       .catch(err => console.error(err))
@@ -39,25 +40,11 @@ export default class ActivityItem extends Component {
   render() {
     return (
       <div>
-          
-      
-        {/* <Link to={`/activity-detail/${this.props._id}`} className='col-3'>
-
-          <div className='col-3 art'>
-            <img src={this.props.image} alt={this.props.name} width='200px' />
-            <br />
-            <br />
-            <br />
-            <h3>{this.props.name}</h3>
-            <br />
-            <h5>{this.props.instructor}</h5>
-          </div>
-        </Link> */}
         {this.props.loggedUser?.role === 'USER' &&
           <div>
             {!this.isFullActivity() && (this.props.participant.includes(this.props.loggedUser?._id)
-              ? <Button onClick={() => this.offActivity()}>Get off Activity</Button>
-              : <Button onClick={() => this.joinActivity()}>Join Activity</Button>
+              ? <Button className='act' onClick={() => this.offActivity()}>Get off Activity</Button>
+              : <Button className='act' onClick={() => this.joinActivity()}>Join Activity</Button>
             )}
           </div>
         }

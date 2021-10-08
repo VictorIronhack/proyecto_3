@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 import { Button, Modal, Spinner } from 'react-bootstrap'
 import ActivityService from '../../../services/activity.service'
 import ActivityForm from './ActivityForm/ActivityForm'
-import ActivityItem from './ActivityItem/ActivityItem'
+// import ActivityItem from './ActivityItem/ActivityItem'
 import Calendar from './../Calendar/Calendar'
 import { Fade } from 'react-slideshow-image';
 import './Activities.css'
@@ -63,10 +63,10 @@ export default class Activities extends Component {
         ?
         <Spinner animation="border" variant="primary" />
         :
-        <section>
+        <section>    
           <div className='column centerOne'>
             <div className='row justify-content-md-center'>
-              {this.state.activities.map(activities => <ActivityItem key={activities._id} {...activities} refreshActivity={this.refreshActivity} loggedUser={this.props.loggedUser} />)}
+              {/* {this.state.activities.map(activities => <ActivityItem key={activities._id} {...activities} refreshActivity={this.refreshActivity} loggedUser={this.props.loggedUser} />)} */}
             </div>
             <div className="slide-container">
               <Fade duration={1000} transitionDuration={800} infinite={true} arrows={false} autoplay={true} pauseOnHover={true}>
@@ -80,7 +80,7 @@ export default class Activities extends Component {
           </div>
           {this.props.loggedUser?.role === 'MAN' &&
             <div>
-              <Button block className="mt-2" onClick={() => this.openModal()}>New Activity</Button>
+              <Button block className="mt-2 newact" onClick={() => this.openModal()}>New Activity</Button>
               <Modal show={this.state.show} onHide={() => this.closeModal()}>
                 <Modal.Header closeButton>
                   <Modal.Title>New Activity</Modal.Title>
@@ -93,7 +93,7 @@ export default class Activities extends Component {
           <br />
           <br />
           <br />
-          <section>
+          <section>    
             <Calendar />
           </section>
         </section>

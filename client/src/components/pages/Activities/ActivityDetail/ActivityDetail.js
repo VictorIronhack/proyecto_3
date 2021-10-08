@@ -5,6 +5,7 @@ import ActivityForm from '../ActivityForm/ActivityForm'
 import BackgroundVideos from '../../BackgroundVideo/BackgroundVideo'
 import './ActivityDetail.css'
 import StarRate from '../StarRate'
+import ActivityItem from '../ActivityItem/ActivityItem'
 
 export default class ActivityDetail extends Component {
 
@@ -26,8 +27,10 @@ componentDidMount() {
 
 refreshActivity() {
   const{id} = this.props.match.params
+  console.log("refreshing")
   this.activitiesService.getOneActivity(id)
       .then( res => {
+        console.log(res.data)
           this.setState({
               ...this.state,
               activities: res.data
@@ -49,18 +52,6 @@ openModal = () => {
       show: false
     })
   }
-
-   
-    // const{id} = this.props.match.params
-    // this.activitiesService.getOneActivity(id)
-    //     .then( res => {
-    //         this.setState({
-    //             ...this.state,
-    //             activities: res.data
-    //     })
-    // })
-// .catch(err => console.error(err))
-// }
 
 deleteAct = () => {
     this.activitiesService.deleteActivity(this.state.activities.activity._id)
@@ -91,8 +82,9 @@ deleteAct = () => {
                         <hr />
                         <h3 className='inst'>Instructor: {this.state.activities.activity.instructor}</h3>
                     </Col>
+                    {this.props.loggedUser?.role === 'USER' &&
                   <StarRate/>
-
+                    }
                 </Row>
                 :
                 <Spinner />
@@ -105,10 +97,17 @@ deleteAct = () => {
                   <ActivityForm refreshActivity={() => this.refreshActivity()} closeModal={() => this.closeModal()} data={this.state.activities}  />
                 </Modal.Body>
               </Modal>
+              {this.props.loggedUser?.role === 'MAN' &&
               <div className='btns'>
               <Button type='submit' onSubmit = {this.handleSubmit} block className="mt-2 deletebt" onClick={() => this.deleteAct()}>Delet Activity</Button>
               <Button block className="mt-2 editbt" onClick={() => this.openModal()}>Edit Activity</Button>
               </div>
+              }
+              {this.props.loggedUser?.role === 'USER' &&
+              <div>
+              {this.state.activities && <ActivityItem {...this.state.activities.activity} refreshActivity={()=>this.refreshActivity()} loggedUser={this.props.loggedUser} />}
+              </div>
+              }
             </Container>
             </>
         )

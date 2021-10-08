@@ -15,7 +15,7 @@ const Routes = ({ storeUser, loggedUser }) => {
     <Switch>
       <Route exact path='/' render={() => <HomePage />} />
       <Route exact path='/activities' render={() => <Activities loggedUser={loggedUser} />} /> 
-      <Route path="/activity-detail/:id" render={(props) => <ActivityDetail {...props} />} />
+      <Route path="/activity-detail/:id" render={(props) => <ActivityDetail {...props} loggedUser={loggedUser}/>} />
       <Route exact path='/events' render={(props) => <Events {...props} loggedUser={loggedUser}/>} /> 
       <Route exact path='/profile' render={() => loggedUser ? <Profile loggedUser={loggedUser} /> : <Redirect to="/login" />} />
       <Route exact path='/signup' render={(props) => <Signup {...props}/>} />

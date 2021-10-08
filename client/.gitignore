@@ -24,3 +24,5 @@ yarn-debug.log*
 yarn-error.log*
 
 /client/src/components/pages/media/cielo.mp4
+
+/server/public

@@ -77,7 +77,9 @@ sendToCart = () => {
               </div>
             </figcaption>
             <Card.Body>
+            {this.props.loggedUser?.role === 'USER' &&
               <Button className='buttonBackground' onClick={() => this.sendToCart()}>Add to Cart</Button>
+            }
             </Card.Body>
           </figure>
         </div>

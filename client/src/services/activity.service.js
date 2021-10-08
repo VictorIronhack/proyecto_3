@@ -12,6 +12,8 @@ class ActivityService {
   getActivities = () => this.instance.get("/");
   getOneActivity = (id) => this.instance.get(`/${id}`);
   createActivity = (activity) => this.instance.post("/", activity);
+  pushUserActivity = (activityId) => this.instance.put("/push", {activityId}) 
+  pullUserActivity = (activityId) => this.instance.put("/pull", {activityId})
   updateOneActivity = (id, activity) => this.instance.put(`/${id}`, activity)
   }
 
